@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:controls="clr-namespace:TaxiMobile.Controls"
+             x:Class="TaxiMobile.Views.RegisterView"
+             BackgroundColor="{StaticResource SpecialPurple}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="520"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="300" WidthRequest="200" Grid.Row="1" Grid.Column="1">
+
+            <Frame AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
+                       BackgroundColor="White" HasShadow="true"
+                       CornerRadius="10" Margin="0, 0, 0, 25"
+                       >
+                <StackLayout Margin="0, 30">
+                    <Label Text="Registration" Style="{StaticResource PageHeaderStyle}"></Label>
+                    <controls:RoundedEntry Placeholder="Driver name" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Driver.Drv_Name, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Driver surname" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Driver.Drv_Surname, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Identity" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Driver.Drv_Identity, Mode=TwoWay}"/>
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Password" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Password, Mode=TwoWay}"/>
+                    <controls:RoundedEntry IsPassword="True" Placeholder="Repeat password" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding PasswordConfirmation, Mode=TwoWay}"/>
+                    <controls:RoundedEntry Placeholder="Phone number" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Driver.Drv_Phone, Mode=TwoWay}"/>
+                    <Button Style="{StaticResource RegularButton}" Text="Register" Command="{Binding RegisterCommand}"></Button>
+                </StackLayout>
+            </Frame>
+            <Frame  AbsoluteLayout.LayoutFlags="PositionProportional" Padding="0,0,0,0" BackgroundColor="Transparent"
+                    AbsoluteLayout.LayoutBounds="0.5,0,50,50" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Image Source="splash.png" VerticalOptions="Start" Grid.Row="0" Grid.RowSpan="2"></Image>
+            </Frame>
+        </AbsoluteLayout>
+    </Grid>
+</ContentPage>

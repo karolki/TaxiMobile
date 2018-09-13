@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utility="clr-namespace:TaxiMobile.Utility;assembly=TaxiMobile"
+             xmlns:behaviors="clr-namespace:TaxiMobile.Behaviors"
+             x:Class="TaxiMobile.Views.MainView"
+             x:Name="MainView"
+             xmlns:views="clr-namespace:TaxiMobile.Views"
+             utility:ViewModelLocators.AutoWireViewModel="True"
+             BackgroundColor="{StaticResource SpecialPurple}"
+             Title="TaxiMobile">
+        <Grid>
+            <ListView VerticalOptions="FillAndExpand" 
+                      Header="." 
+                      ItemsSource="{Binding DriverCollection}"
+                      Margin="10,10,10,10"
+                      RowHeight="60">
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding DriverTappedCommand}" 
+                                                  EventArgsConverter="{StaticResource MyItemTappedConverter}" >
+                </behaviors:EventToCommandBehavior>
+            </ListView.Behaviors>
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="8*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image HeightRequest="200" Grid.Row="0" Source="header1.jpg" Aspect="AspectFill"></Image>
+                        <StackLayout Grid.Row="1">
+                            <Label Text="LOCAL TAXIS LIST" TextColor="White" Scale="2" HorizontalOptions="CenterAndExpand"></Label>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="500" >
+                        <StackLayout BackgroundColor="White" Margin="0,10,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout WidthRequest="250">
+                                    <Label   Text="{Binding Personality}" Margin="5,2,5,0" Style="{StaticResource DriverNameStyle}"/>
+                                    <Label   Margin="5,0,5,0"  Text="{Binding Distance,Converter=DecimalDistanceConverter}" Style="{StaticResource DescriptionStyle}"/>
+                                </StackLayout>
+                                <StackLayout>
+                                    <Label HeightRequest="60"   Text="Rating" Style="{StaticResource DriverNameStyle}" HorizontalTextAlignment="End"></Label>
+                                    <Label HeightRequest="40"   Text="{Binding AverageRating}" Style="{StaticResource DriverNameStyle}" HorizontalTextAlignment="End"></Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+   </ContentPage>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:TaxiMobile.Views"
+             x:Class="TaxiMobile.Views.StartView"
+             xmlns:pages="clr-namespace:TaxiMobile.Views"
+             Title="TaxiMobile"
+             MasterBehavior="Popover">
+    <MasterDetailPage.Master Title="TaxiMobile">
+        <views:MenuView BindingContext="{Binding MenuViewModel}" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <ContentPage Title="Some Page Title"></ContentPage>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

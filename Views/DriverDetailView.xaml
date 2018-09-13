@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TaxiMobile.Views.DriverDetailView"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:controls="clr-namespace:TaxiMobile.Controls"
+             BackgroundColor="{StaticResource SpecialPurple}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="650"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="350"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <AbsoluteLayout HorizontalOptions="FillAndExpand" HeightRequest="400" WidthRequest="250" Grid.Row="1" Grid.Column="1">
+                <Frame AbsoluteLayout.LayoutFlags="SizeProportional" AbsoluteLayout.LayoutBounds="0.5,0.5,1,1" 
+                       BackgroundColor="White" HasShadow="true"
+                       CornerRadius="10" Margin="0, 10, 0, 150">
+                    <StackLayout Margin="0, 2">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Name: " Style="{StaticResource PageHeaderStyle}"></Label>
+                            <Label Text="{Binding Driver.Drv_Name}" Style="{StaticResource PageHeaderStyle}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Surname: " Style="{StaticResource PageHeaderStyle}"></Label>
+                            <Label Text="{Binding Driver.Drv_Surname}" Style="{StaticResource PageHeaderStyle}"></Label>
+                        </StackLayout>
+                        <Grid HeightRequest="60">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="Phone: " Style="{StaticResource PageHeaderStyle}"></Label>
+                            <Label Grid.Column="1" Text="{Binding Driver.Drv_Phone}" Style="{StaticResource PageHeaderStyle}"></Label>
+                            <Button Grid.Column="2" Image="phone.png" Command="{Binding PhoneCommand}"/>
+                        </Grid>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Margin="5,0,0,0" WidthRequest="150" Text="Add comment" Style="{StaticResource DescriptionStyle}"></Label>
+                            <controls:RoundedEntry Margin="10,0,0,0" Placeholder="Author" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Author, Mode=TwoWay}"/>
+                        </StackLayout>
+                        <controls:RoundedEntry Placeholder="Comment" WidthRequest="100" Style="{StaticResource RoundedEntryStyle}" Text="{Binding CommentDescription, Mode=TwoWay}"/>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                            <controls:RoundedEntry Placeholder="0" WidthRequest="50" Style="{StaticResource RoundedEntryStyle}" Text="{Binding Rating, Mode=TwoWay, Converter=DecimalTextConverter}"/>
+                            <Button WidthRequest="250"   Style="{StaticResource RegularButton}" Text="Add" Command="{Binding CommentCommand}"></Button>
+                        </StackLayout>
+                       
+                        <ListView VerticalOptions="FillAndExpand" 
+                              Header="." 
+                              ItemsSource="{Binding Driver.Opinions}"
+                              Margin="10,10,10,10"
+                                  RowHeight="150">
+                            <ListView.HeaderTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackLayout>
+                                            <Label Text="COMMENTS" Style="{StaticResource PageHeaderStyle}" HorizontalOptions="CenterAndExpand"></Label>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.HeaderTemplate>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell Height="200">
+                                        <Grid Margin="3" BackgroundColor="LightYellow" RowSpacing="2" HeightRequest="200">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout  Grid.Row="0" Orientation="Horizontal">
+                                                <Label   Text="{Binding Opi_Rating}"  Style="{StaticResource DriverNameStyle}"/>
+                                                <Label   Text=" / 5" Style="{StaticResource DescriptionStyle}"/>
+                                                <Label   Text="{Binding Opi_Person}" Style="{StaticResource DescriptionStyle}" Margin="20,0,0,0"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Row="1">
+                                                <Label  Margin="5,0,5,1" Text="{Binding Opi_Description}" Style="{StaticResource DescriptionStyle}" HeightRequest="200"></Label>
+                                            </StackLayout>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+                </Frame>
+
+            </AbsoluteLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
